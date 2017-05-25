@@ -1,0 +1,12 @@
+<resources>
+
+    <!--MAI-->
+    <string name="app_name">Poi</string>
+
+    <!--SPLASH VIEW-->
+    <string name="title_activity_home">HomeActivity</string>
+
+    <!--HOME VIEW-->
+    <string name="title_home">Home</string>
+    <string name="title_map">Map</string>
+</resources>
