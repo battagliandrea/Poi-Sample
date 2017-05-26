@@ -3,8 +3,8 @@ package com.andreadev.poi.api;
 
 import com.andreadev.poi.api.response.TestResponse;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
-import rx.Observable;
 
 
 /**

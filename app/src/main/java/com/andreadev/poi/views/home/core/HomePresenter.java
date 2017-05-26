@@ -1,5 +1,7 @@
 package com.andreadev.poi.views.home.core;
 
+import android.os.Handler;
+
 import com.andreadev.poi.models.Poi;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class HomePresenter implements IHomePresenter, IHomeInteractor.OnGetPoiLi
     @Override
     public void getList() {
         view.showProgress();
-        interactor.getPoi(this);
+        interactor.getPoi(HomePresenter.this);
     }
 
     @Override

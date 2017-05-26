@@ -1,6 +1,7 @@
 package com.andreadev.poi.views.home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
@@ -44,7 +45,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
         setupViewPager();
         setupNavigation();
 
-        presenter = new HomePresenter(this);
+        presenter = new HomePresenter(HomeActivity.this);
     }
 
     @Override

@@ -46,7 +46,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.itemName.setText(poi.name);
         holder.itemAddress.setText(poi.address);
 
-        Glide.with(context).load(poi.imagePath).centerCrop().placeholder(R.mipmap.ic_launcher).into(holder.itemAvatar);
+        Glide.with(context).load(poi.imagePath).centerCrop().error(R.mipmap.ic_launcher).into(holder.itemAvatar);
     }
 
     @Override
@@ -55,10 +55,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     public void setPoi(List<Poi> data) {
-        for (Poi d : data) {
-            pointsOfInterest.add(d);
-        }
-        notifyDataSetChanged();
+        pointsOfInterest.clear();
+        pointsOfInterest.addAll(data);
+        this.notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

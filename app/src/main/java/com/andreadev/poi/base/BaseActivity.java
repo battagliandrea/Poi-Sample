@@ -1,9 +1,13 @@
 package com.andreadev.poi.base;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Window;
 
 import com.andreadev.poi.R;
 
@@ -31,8 +35,10 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     @Override
     public void showProgress() {
         dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.progress_view);
         dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
     }
 

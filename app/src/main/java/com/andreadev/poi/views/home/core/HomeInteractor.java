@@ -8,8 +8,10 @@ import com.andreadev.poi.api.response.TestResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by andrea on 26/05/2017.
@@ -29,18 +31,13 @@ public class HomeInteractor implements IHomeInteractor{
         ApiInterface apiService = ApiClient.getApiClient().create(ApiInterface.class);
 
         apiService.testjson()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.io())
-                .subscribe(new Subscriber<TestResponse>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "TEST_JSON COMPLETED");
-                    }
+                .subscribeOn(Schedulers.newThread()) // optional if you do not wish to override the default behavior
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TestResponse>() {
 
                     @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "TEST_JSON ERROR");
-                        listener.onError();
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override
@@ -50,6 +47,17 @@ public class HomeInteractor implements IHomeInteractor{
                             Log.d(TAG, gson.toJson(response, TestResponse.class));
                             listener.onSuccess(response.data);
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "TEST_JSON ERROR");
+                        listener.onError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "TEST_JSON COMPLETED");
                     }
                 });
     }
