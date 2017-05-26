@@ -89,15 +89,20 @@ public class HomeActivity extends BaseActivity implements IHomeView {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        navigation.setSelectedItemId(R.id.navigation_list);
-                        break;
-                    case 1:
-                        navigation.setSelectedItemId(R.id.navigation_map);
-                        break;
+                try{
+                    switch (position) {
+                        case 0:
+                            ((ListFragment)((ViewPagerAdapter)viewpager.getAdapter()).getItem(0)).onResumeFragment();
+                            navigation.setSelectedItemId(R.id.navigation_list);
+                            break;
+                        case 1:
+                            ((MapFragment)((ViewPagerAdapter)viewpager.getAdapter()).getItem(1)).onResumeFragment();
+                            navigation.setSelectedItemId(R.id.navigation_map);
+                            break;
+                    }
+                }catch (NullPointerException | ClassCastException e){
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -112,6 +117,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
     public void getListSuccess(List<Poi> data) {
         try{
             ((ListFragment)((ViewPagerAdapter)viewpager.getAdapter()).getItem(0)).setData(data);
+            ((MapFragment)((ViewPagerAdapter)viewpager.getAdapter()).getItem(1)).setData(data);
         }catch (NullPointerException | ClassCastException e){
             e.printStackTrace();
         }

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.andreadev.poi.R;
 import com.andreadev.poi.models.Poi;
 import com.andreadev.poi.views.home.adapters.ListAdapter;
-import com.andreadev.poi.widgets.FragmentLifecycle;
+import com.andreadev.poi.widgets.HomeFragmentCallback;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class ListFragment extends Fragment implements FragmentLifecycle {
+public class ListFragment extends Fragment implements HomeFragmentCallback {
 
 
     @InjectView(R.id.recycler_view)
@@ -56,12 +56,6 @@ public class ListFragment extends Fragment implements FragmentLifecycle {
 
         adapter = new ListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
-    }
-
-
-    @Override
-    public void onPauseFragment() {
-
     }
 
     @Override

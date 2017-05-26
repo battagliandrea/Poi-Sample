@@ -1,12 +1,10 @@
 <resources>
 
     <!--MISCELLANEOUS-->
-    <string name="app_name">Poi</string>
+    <string name="app_name">POI</string>
 
     <!--HOME VIEW-->
     <string name="title_list">Lista</string>
     <string name="title_map">Mappa</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

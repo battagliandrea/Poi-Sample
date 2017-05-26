@@ -14,9 +14,9 @@ public class Poi {
         @SerializedName("address")
         public String address;
         @SerializedName("lat")
-        public String lat;
+        public double lat;
         @SerializedName("lng")
-        public String lng;
+        public double lng;
         @SerializedName("description")
         public String description;
         @SerializedName("imagePath")

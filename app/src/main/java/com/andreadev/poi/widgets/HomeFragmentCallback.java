@@ -10,9 +10,8 @@ import java.util.List;
  * Created by Andrea on 28/09/16.
  */
 
-public interface FragmentLifecycle {
+public interface HomeFragmentCallback {
 
-    void onPauseFragment();
     void onResumeFragment();
     void setData(List<Poi> data);
 }
