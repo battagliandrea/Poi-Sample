@@ -7,6 +7,6 @@
     <string name="title_activity_home">HomeActivity</string>
 
     <!--HOME VIEW-->
-    <string name="title_home">Home</string>
-    <string name="title_map">Map</string>
+    <string name="title_poi">Poi</string>
+    <string name="title_map">Mappa</string>
 </resources>
