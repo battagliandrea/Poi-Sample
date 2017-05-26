@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
  * Created by andrea on 26/05/2017.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements BaseView{
 
 
     public void setupToolbar(Toolbar toolbar, boolean displayHome, @Nullable String title){
@@ -25,11 +25,13 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    public void showProgress(){
+    @Override
+    public void showProgress() {
 
     }
 
-    public void hideProgregg(){
+    @Override
+    public void hideProgress() {
 
     }
 }

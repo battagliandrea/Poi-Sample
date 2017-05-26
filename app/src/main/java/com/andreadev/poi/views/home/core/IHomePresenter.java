@@ -5,4 +5,6 @@ package com.andreadev.poi.views.home.core;
  */
 
 public interface IHomePresenter {
+
+    void getList();
 }
