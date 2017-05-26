@@ -46,9 +46,9 @@ public class HomeInteractor implements IHomeInteractor{
                     @Override
                     public void onNext(TestResponse response) {
                         Log.d(TAG, "TEST_JSON SUCCESS");
-                        if(response!=null){
+                        if(response!=null && response.data!=null){
                             Log.d(TAG, gson.toJson(response, TestResponse.class));
-                            listener.onSuccess();
+                            listener.onSuccess(response.data);
                         }
                     }
                 });

@@ -8,11 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.andreadev.poi.R;
+import com.andreadev.poi.models.Poi;
+import com.andreadev.poi.widgets.FragmentLifecycle;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements FragmentLifecycle{
 
 
     public MapFragment() {
@@ -26,4 +30,18 @@ public class MapFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
+    @Override
+    public void onPauseFragment() {
+
+    }
+
+    @Override
+    public void onResumeFragment() {
+
+    }
+
+    @Override
+    public void setData(List<Poi> data) {
+
+    }
 }

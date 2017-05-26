@@ -9,11 +9,14 @@ import android.view.MenuItem;
 
 import com.andreadev.poi.R;
 import com.andreadev.poi.base.BaseActivity;
+import com.andreadev.poi.models.Poi;
 import com.andreadev.poi.views.home.core.HomePresenter;
 import com.andreadev.poi.views.home.core.IHomeView;
 import com.andreadev.poi.views.home.fragments.ListFragment;
 import com.andreadev.poi.views.home.fragments.MapFragment;
 import com.andreadev.poi.widgets.ViewPagerAdapter;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -105,12 +108,11 @@ public class HomeActivity extends BaseActivity implements IHomeView {
 
 
     @Override
-    public void poiSuccess() {
-
-    }
-
-    @Override
-    public void poiError() {
-
+    public void getListSuccess(List<Poi> data) {
+        try{
+            ((ListFragment)((ViewPagerAdapter)viewpager.getAdapter()).getItem(0)).setData(data);
+        }catch (NullPointerException | ClassCastException e){
+            e.printStackTrace();
+        }
     }
 }
