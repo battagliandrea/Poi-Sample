@@ -4,41 +4,47 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.andreadev.poi.R;
+import com.andreadev.poi.base.BaseActivity;
 
-public class HomeActivity extends AppCompatActivity {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
-    private TextView mTextMessage;
+public class HomeActivity extends BaseActivity {
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_poi);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_map);
-                    return true;
-            }
-            return false;
-        }
-
-    };
+    @InjectView(R.id.navigation)
+    BottomNavigationView navigation;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.inject(this);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        this.setupToolbar(toolbar, false, getResources().getString(R.string.app_name));
+
+    }
+
+    private void setupNavigation() {
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        //mTextMessage.setText(R.string.title_poi);
+                        return true;
+                    case R.id.navigation_dashboard:
+                        //mTextMessage.setText(R.string.title_map);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
 }

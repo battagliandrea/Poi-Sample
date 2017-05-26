@@ -1,12 +1,9 @@
 <resources>
 
-    <!--MAI-->
+    <!--MISCELLANEOUS-->
     <string name="app_name">Poi</string>
 
-    <!--SPLASH VIEW-->
-    <string name="title_activity_home">HomeActivity</string>
-
     <!--HOME VIEW-->
-    <string name="title_poi">Poi</string>
+    <string name="title_list">Lista</string>
     <string name="title_map">Mappa</string>
 </resources>
