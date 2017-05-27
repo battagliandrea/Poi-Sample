@@ -1,12 +1,18 @@
 package com.andreadev.poi.views.home.fragments;
 
-import android.content.Intent;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,8 +20,7 @@ import com.andreadev.poi.R;
 import com.andreadev.poi.helper.NavigationHelper;
 import com.andreadev.poi.helper.OnItemSelectedListener;
 import com.andreadev.poi.models.Poi;
-import com.andreadev.poi.utils.Constant;
-import com.andreadev.poi.views.details.DetailsActivity;
+import com.andreadev.poi.views.home.HomeActivity;
 import com.andreadev.poi.views.home.adapters.ListAdapter;
 import com.andreadev.poi.helper.HomeFragmentCallback;
 
@@ -37,6 +42,7 @@ public class ListFragment extends Fragment implements HomeFragmentCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -44,7 +50,7 @@ public class ListFragment extends Fragment implements HomeFragmentCallback {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.inject(this, view);
 
-        initRecyclerView();
+        setupRecyclerView();
 
         return view;
     }
@@ -55,7 +61,28 @@ public class ListFragment extends Fragment implements HomeFragmentCallback {
         ButterKnife.reset(this);
     }
 
-    private void initRecyclerView(){
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.list_menu, menu);
+
+        setupSearchView(menu);
+    }
+
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                //TODO: Not implemented here
+                return false;
+            default:
+                break;
+        }
+        return false;
+    }*/
+
+    private void setupRecyclerView(){
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -67,6 +94,26 @@ public class ListFragment extends Fragment implements HomeFragmentCallback {
             @Override
             public void onItemSelected(Poi item, int position) {
                 NavigationHelper.navigateToDetails(getActivity(), item.id, item.name);
+            }
+        });
+    }
+
+    private void setupSearchView(Menu menu){
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setQueryHint(getResources().getString(R.string.search));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ((HomeActivity)getActivity()).filterList(newText);
+                return false;
             }
         });
     }

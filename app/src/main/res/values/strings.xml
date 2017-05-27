@@ -7,6 +7,7 @@
     <string name="title_list">Lista</string>
     <string name="title_map">Mappa</string>
     <string name="title_activity_details">DetailsActivity</string>
+    <string name="search">Cerca</string>
 
     <!--DETAILS VIEW-->
     <string name="details_business_hours_text">Orari di apertura</string>

@@ -1,11 +1,17 @@
 package com.andreadev.poi.views.home;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.andreadev.poi.R;
@@ -46,14 +52,37 @@ public class HomeActivity extends BaseActivity implements IHomeView {
 
         presenter = new HomePresenter(this);
         presenter.getList();
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
     }
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list_menu, menu);
+
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setQueryHint(getResources().getString(R.string.search));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                presenter.filterList(newText);
+                return false;
+            }
+        });
+        return true;
+    }*/
 
     private void setupNavigation() {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -120,5 +149,18 @@ public class HomeActivity extends BaseActivity implements IHomeView {
         }catch (NullPointerException | ClassCastException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void filterListSuccess(List<Poi> data) {
+        try{
+            ((ListFragment)((ViewPagerAdapter)viewpager.getAdapter()).getItem(0)).setData(data);
+        }catch (NullPointerException | ClassCastException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void filterList(String query){
+        presenter.filterList(query);
     }
 }

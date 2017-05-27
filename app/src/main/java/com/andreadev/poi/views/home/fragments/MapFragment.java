@@ -5,6 +5,8 @@ import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -44,6 +46,11 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
     private List<Poi> markersList;
     private HashMap<Marker, String> mHashMap = new HashMap<Marker, String>();
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
@@ -93,6 +100,7 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
         super.onDestroyView();
         ButterKnife.reset(this);
     }
+
 
     private void requirePermission(){
         Dexter.checkPermissions(new MultiplePermissionsListener() {
