@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.andreadev.poi.R;
+import com.andreadev.poi.helper.NavigationHelper;
 import com.andreadev.poi.models.Poi;
 import com.andreadev.poi.helper.HomeFragmentCallback;
 import com.google.android.gms.maps.CameraUpdate;
@@ -18,6 +19,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -26,6 +28,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -39,6 +42,8 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
     private GoogleMap map;
 
     private List<Poi> markersList;
+    private HashMap<Marker, String> mHashMap = new HashMap<Marker, String>();
+    boolean secondClck = false;
 
 
     @Override
@@ -116,9 +121,16 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
 
         if(markersList!=null){
             for (Poi p : markersList) {
-                map.addMarker(new MarkerOptions().position(new LatLng(p.lat, p.lng)).title(p.name));
+                Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(p.lat, p.lng)).title(p.name).snippet(p.address));
+                mHashMap.put(marker, p.id);
             }
         }
 
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                NavigationHelper.navigateToDetails(getActivity(), mHashMap.get(marker), marker.getTitle());
+            }
+        });
     }
 }
