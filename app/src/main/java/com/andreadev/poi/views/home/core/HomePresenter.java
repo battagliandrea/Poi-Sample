@@ -1,11 +1,6 @@
 package com.andreadev.poi.views.home.core;
 
-import android.os.Handler;
-
 import com.andreadev.poi.data.DataHelper;
-import com.andreadev.poi.models.Poi;
-
-import java.util.List;
 
 /**
  * Created by andrea on 26/05/2017.

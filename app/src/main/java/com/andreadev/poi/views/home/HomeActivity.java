@@ -1,5 +1,6 @@
 package com.andreadev.poi.views.home;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -40,12 +41,13 @@ public class HomeActivity extends BaseActivity implements IHomeView {
 
         this.setupToolbar(toolbar, false, getResources().getString(R.string.app_name));
 
-
         setupViewPager();
         setupNavigation();
 
-        presenter = new HomePresenter(HomeActivity.this);
+        presenter = new HomePresenter(this);
         presenter.getList();
+
+
     }
 
     @Override

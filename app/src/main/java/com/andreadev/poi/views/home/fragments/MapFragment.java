@@ -43,7 +43,6 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
 
     private List<Poi> markersList;
     private HashMap<Marker, String> mHashMap = new HashMap<Marker, String>();
-    boolean secondClck = false;
 
 
     @Override
@@ -58,19 +57,24 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
     @Override
     public void onResume() {
         super.onResume();
-        mapview.onResume();
+        if(mapview!=null)
+            mapview.onResume();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mapview.onDestroy();
+        if(mHashMap!=null)
+            mHashMap.clear();
+        if(mapview!=null)
+            mapview.onDestroy();
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mapview.onLowMemory();
+        if(mapview!=null)
+            mapview.onLowMemory();
     }
 
     @Override
