@@ -2,6 +2,7 @@ package com.andreadev.poi.views.home.core;
 
 import android.os.Handler;
 
+import com.andreadev.poi.data.DataHelper;
 import com.andreadev.poi.models.Poi;
 
 import java.util.List;
@@ -32,8 +33,8 @@ public class HomePresenter implements IHomePresenter, IHomeInteractor.OnGetPoiLi
     }
 
     @Override
-    public void onSuccess(List<Poi> data) {
-        view.getListSuccess(data);
+    public void onSuccess() {
+        view.getListSuccess(DataHelper.getIstance().getPointsOfInterest());
         view.hideProgress();
     }
 }

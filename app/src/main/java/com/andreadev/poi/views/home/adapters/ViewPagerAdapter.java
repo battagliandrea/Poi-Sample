@@ -1,4 +1,4 @@
-package com.andreadev.poi.widgets;
+package com.andreadev.poi.views.home.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

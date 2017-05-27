@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.andreadev.poi.R;
 import com.andreadev.poi.models.Poi;
-import com.andreadev.poi.widgets.HomeFragmentCallback;
+import com.andreadev.poi.helper.HomeFragmentCallback;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

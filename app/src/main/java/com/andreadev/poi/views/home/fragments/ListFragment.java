@@ -1,5 +1,6 @@
 package com.andreadev.poi.views.home.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,9 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.andreadev.poi.R;
+import com.andreadev.poi.helper.NavigationHelper;
+import com.andreadev.poi.helper.OnItemSelectedListener;
 import com.andreadev.poi.models.Poi;
+import com.andreadev.poi.utils.Constant;
+import com.andreadev.poi.views.details.DetailsActivity;
 import com.andreadev.poi.views.home.adapters.ListAdapter;
-import com.andreadev.poi.widgets.HomeFragmentCallback;
+import com.andreadev.poi.helper.HomeFragmentCallback;
 
 import java.util.List;
 
@@ -27,11 +32,6 @@ public class ListFragment extends Fragment implements HomeFragmentCallback {
     RecyclerView recyclerView;
 
     private ListAdapter adapter;
-
-    public ListFragment() {
-
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +56,13 @@ public class ListFragment extends Fragment implements HomeFragmentCallback {
 
         adapter = new ListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemSelectedListener(new OnItemSelectedListener<Poi>() {
+            @Override
+            public void onItemSelected(Poi item, int position) {
+                NavigationHelper.navigateToDetails(getActivity(), item.id, item.name);
+            }
+        });
     }
 
     @Override

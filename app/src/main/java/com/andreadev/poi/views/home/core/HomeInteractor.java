@@ -5,6 +5,7 @@ import android.util.Log;
 import com.andreadev.poi.api.ApiClient;
 import com.andreadev.poi.api.ApiInterface;
 import com.andreadev.poi.api.response.TestResponse;
+import com.andreadev.poi.data.DataHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -45,7 +46,8 @@ public class HomeInteractor implements IHomeInteractor{
                         Log.d(TAG, "TEST_JSON SUCCESS");
                         if(response!=null && response.data!=null){
                             Log.d(TAG, gson.toJson(response, TestResponse.class));
-                            listener.onSuccess(response.data);
+                            DataHelper.getIstance().setPointsOfInterest(response.data);
+                            listener.onSuccess();
                         }
                     }
 

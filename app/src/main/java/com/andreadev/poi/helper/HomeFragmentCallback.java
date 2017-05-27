@@ -1,4 +1,4 @@
-package com.andreadev.poi.widgets;
+package com.andreadev.poi.helper;
 
 import android.support.annotation.Nullable;
 

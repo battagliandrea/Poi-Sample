@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.andreadev.poi.R;
+import com.andreadev.poi.helper.OnItemSelectedListener;
 import com.andreadev.poi.models.Poi;
 import com.bumptech.glide.Glide;
 
@@ -27,6 +28,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private Context context;
     private List<Poi> pointsOfInterest;
+
+    private OnItemSelectedListener<Poi> onItemSelectedListener;
 
     public ListAdapter(Context context) {
         this.context = context;
@@ -60,6 +63,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.notifyDataSetChanged();
     }
 
+    public void setOnItemSelectedListener(OnItemSelectedListener<Poi> onItemSelectedListener) {
+        this.onItemSelectedListener = onItemSelectedListener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @InjectView(R.id.item_name)
@@ -72,6 +79,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         public ViewHolder(View vi) {
             super(vi);
             ButterKnife.inject(this, vi);
+
+            vi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemSelectedListener != null)
+                        onItemSelectedListener.onItemSelected(pointsOfInterest.get(getAdapterPosition()), getAdapterPosition());
+                }
+            });
         }
 
     }

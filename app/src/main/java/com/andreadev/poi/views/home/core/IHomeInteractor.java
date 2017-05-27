@@ -12,7 +12,7 @@ public interface IHomeInteractor {
 
     interface OnGetPoiListener {
         void onError();
-        void onSuccess(List<Poi> data);
+        void onSuccess();
     }
 
     void getPoi(OnGetPoiListener listener);

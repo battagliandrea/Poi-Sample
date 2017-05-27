@@ -1,7 +1,6 @@
 package com.andreadev.poi.views.home;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
@@ -15,7 +14,7 @@ import com.andreadev.poi.views.home.core.HomePresenter;
 import com.andreadev.poi.views.home.core.IHomeView;
 import com.andreadev.poi.views.home.fragments.ListFragment;
 import com.andreadev.poi.views.home.fragments.MapFragment;
-import com.andreadev.poi.widgets.ViewPagerAdapter;
+import com.andreadev.poi.views.home.adapters.ViewPagerAdapter;
 
 import java.util.List;
 
@@ -46,14 +45,12 @@ public class HomeActivity extends BaseActivity implements IHomeView {
         setupNavigation();
 
         presenter = new HomePresenter(HomeActivity.this);
+        presenter.getList();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(presenter!=null){
-            presenter.getList();
-        }
     }
 
     private void setupNavigation() {

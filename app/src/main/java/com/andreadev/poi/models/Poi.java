@@ -1,5 +1,8 @@
 package com.andreadev.poi.models;
 
+import android.support.annotation.NonNull;
+
+import com.android.internal.util.Predicate;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,6 +12,10 @@ import java.util.List;
  */
 
 public class Poi {
+
+
+        @SerializedName("id")
+        public String id;
         @SerializedName("name")
         public String name;
         @SerializedName("address")
@@ -23,4 +30,6 @@ public class Poi {
         public String imagePath;
         @SerializedName("businessHours")
         public List<BusinessHours> businessHours;
+
+
 }

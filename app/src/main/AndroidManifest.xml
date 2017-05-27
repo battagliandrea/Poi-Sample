@@ -7,11 +7,9 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.ngshah.googlemapv2.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".base.PoiApp"
@@ -21,11 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/PoiMainTheme">
-
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA7CtxrPv6aYBCV9-4ZtBY1ec_IIAaUtnk"/>
-
+            android:value="AIzaSyA7CtxrPv6aYBCV9-4ZtBY1ec_IIAaUtnk" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -40,8 +36,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".views.home.HomeActivity"></activity>
         <activity
-            android:name=".views.home.HomeActivity">
+            android:name=".views.details.DetailsActivity"
+            android:label="@string/title_activity_details"
+            android:parentActivityName=".views.home.HomeActivity"
+            android:theme="@style/PoiMainTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.andreadev.poi.views.home.HomeActivity" />
         </activity>
     </application>
 
