@@ -35,7 +35,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     public void setupCollapsingToolbar(CollapsingToolbarLayout collapsingToolbarLayout, @Nullable String title) {
         if (title != null) {
             collapsingToolbarLayout.setTitle(title);
-            collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, (R.color.white)));
+            collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, (android.R.color.transparent)));
         }
     }
 

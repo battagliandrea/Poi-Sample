@@ -36,6 +36,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
     RecyclerView recyclerViewHorizontal;
     @InjectView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
+    @InjectView(R.id.details_name_text_view)
+    TextView nameTextView;
 
     private DetailsPresenter presenter;
 
@@ -72,7 +74,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
     @Override
     public void onSuccess(Poi value) {
         try {
-            addressTextView.setText(value.address);
+            nameTextView.setText(value.name);
+            addressTextView.setText(value.address + Constant.BRAKET_OPEN + value.lat + Constant.COMMA + value.lng + Constant.BRAKET_CLOSE);
             descriptionTextView.setText(value.description);
 
             Glide.with(this).load(value.imagePath).error(R.drawable.placeholder_details).centerCrop().into(imageView);
