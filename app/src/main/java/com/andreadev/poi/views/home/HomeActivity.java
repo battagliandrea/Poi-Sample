@@ -21,7 +21,7 @@ import android.widget.FrameLayout;
 import com.andreadev.poi.R;
 import com.andreadev.poi.base.BaseActivity;
 import com.andreadev.poi.models.Poi;
-import com.andreadev.poi.views.home.core.HomePresenter;
+import com.andreadev.poi.views.home.core.PoiPresenter;
 import com.andreadev.poi.views.home.core.IHomeView;
 import com.andreadev.poi.views.home.fragments.ListPOIFragment;
 import com.andreadev.poi.views.home.fragments.MapFragment;
@@ -41,7 +41,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
     @InjectView(R.id.viewpager)
     ViewPager viewpager;
 
-    private HomePresenter presenter;
+    private PoiPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
             setupNavigation();
         }
 
-        presenter = new HomePresenter(this);
+        presenter = new PoiPresenter(this);
         presenter.getList();
     }
 

@@ -1,4 +1,4 @@
-package com.andreadev.poi.views.home.core;
+package com.andreadev.poi.interceptors;
 
 import android.util.Log;
 
@@ -8,6 +8,7 @@ import com.andreadev.poi.api.response.TestResponse;
 import com.andreadev.poi.base.PoiApp;
 import com.andreadev.poi.data.DataHelper;
 import com.andreadev.poi.helper.NetworkHelper;
+import com.andreadev.poi.views.home.core.IHomeInteractor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -21,12 +22,12 @@ import io.reactivex.schedulers.Schedulers;
  * Created by andrea on 26/05/2017.
  */
 
-public class HomeInteractor implements IHomeInteractor{
+public class PoiInteractor implements IHomeInteractor {
 
     private final String TAG = getClass().getSimpleName();
     private Gson gson;
 
-    public HomeInteractor() {
+    public PoiInteractor() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 

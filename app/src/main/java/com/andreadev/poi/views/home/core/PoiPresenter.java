@@ -5,6 +5,8 @@ import android.util.Log;
 import com.andreadev.poi.base.PoiApp;
 import com.andreadev.poi.data.DataHelper;
 import com.andreadev.poi.helper.NetworkHelper;
+import com.andreadev.poi.interceptors.PoiInteractor;
+import com.andreadev.poi.interceptors.IPoiPresenter;
 import com.andreadev.poi.models.Poi;
 
 import java.util.ArrayList;
@@ -22,23 +24,23 @@ import io.reactivex.functions.Predicate;
  * Created by andrea on 26/05/2017.
  */
 
-public class HomePresenter implements IHomePresenter, IHomeInteractor.OnGetPoiListener{
+public class PoiPresenter implements IPoiPresenter, IHomeInteractor.OnGetPoiListener{
 
     private final String TAG = getClass().getSimpleName();
 
     private IHomeView view;
-    private HomeInteractor interactor;
+    private PoiInteractor interactor;
 
-    public HomePresenter(IHomeView view) {
+    public PoiPresenter(IHomeView view) {
         this.view = view;
-        interactor = new HomeInteractor();
+        interactor = new PoiInteractor();
     }
 
     @Override
     public void getList() {
         view.showProgress();
         if(NetworkHelper.isNetworkAvailable(PoiApp.getContext())){
-            interactor.getPoi(HomePresenter.this);
+            interactor.getPoi(PoiPresenter.this);
         }else{
             view.hideProgress();
             view.connectionError();
