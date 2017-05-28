@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.andreadev.poi.R;
 import com.andreadev.poi.base.BaseActivity;
+import com.andreadev.poi.helper.AlertDialogHelper;
 import com.andreadev.poi.models.Poi;
 import com.andreadev.poi.utils.Constant;
 import com.andreadev.poi.views.adapters.HorizontalAdapter;
@@ -82,13 +83,13 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
 
         } catch (NullPointerException e) {
             e.printStackTrace();
-            //TODO: alert di errore
+            AlertDialogHelper.showAlert(this, getResources().getString(R.string.warning), getResources().getString(R.string.error_text));
         }
     }
 
     @Override
     public void onError() {
-        //TODO alert di errore
+        AlertDialogHelper.showAlert(this, getResources().getString(R.string.warning), getResources().getString(R.string.error_text));
     }
 
 

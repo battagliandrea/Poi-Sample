@@ -5,13 +5,16 @@ import android.util.Log;
 import com.andreadev.poi.api.ApiClient;
 import com.andreadev.poi.api.ApiInterface;
 import com.andreadev.poi.api.response.TestResponse;
+import com.andreadev.poi.base.PoiApp;
 import com.andreadev.poi.data.DataHelper;
+import com.andreadev.poi.helper.NetworkHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 /**

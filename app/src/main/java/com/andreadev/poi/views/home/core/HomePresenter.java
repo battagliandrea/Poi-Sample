@@ -2,7 +2,9 @@ package com.andreadev.poi.views.home.core;
 
 import android.util.Log;
 
+import com.andreadev.poi.base.PoiApp;
 import com.andreadev.poi.data.DataHelper;
+import com.andreadev.poi.helper.NetworkHelper;
 import com.andreadev.poi.models.Poi;
 
 import java.util.ArrayList;
@@ -35,7 +37,12 @@ public class HomePresenter implements IHomePresenter, IHomeInteractor.OnGetPoiLi
     @Override
     public void getList() {
         view.showProgress();
-        interactor.getPoi(HomePresenter.this);
+        if(NetworkHelper.isNetworkAvailable(PoiApp.getContext())){
+            interactor.getPoi(HomePresenter.this);
+        }else{
+            view.hideProgress();
+            view.connectionError();
+        }
     }
 
     @Override

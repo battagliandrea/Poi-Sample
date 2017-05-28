@@ -2,15 +2,15 @@ package com.andreadev.poi.views.home.fragments;
 
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.andreadev.poi.R;
+import com.andreadev.poi.helper.AlertDialogHelper;
 import com.andreadev.poi.helper.NavigationHelper;
 import com.andreadev.poi.models.Poi;
 import com.andreadev.poi.helper.HomeFragmentCallback;
@@ -46,6 +46,8 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
     private List<Poi> markersList;
     private HashMap<Marker, String> mHashMap = new HashMap<Marker, String>();
 
+    private boolean refreshAfterSettings = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,12 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
         super.onResume();
         if(mapview!=null)
             mapview.onResume();
+
+        if(refreshAfterSettings){
+            refreshAfterSettings = false;
+            requirePermission();
+        }
+
     }
 
     @Override
@@ -115,7 +123,13 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
                 if (report.areAllPermissionsGranted()) {
                     mapview.getMapAsync(MapFragment.this);
                 } else {
-                    //TODO alert dialog
+                    AlertDialogHelper.showPermissionRequestAlert(getActivity(), getResources().getString(R.string.warning), getResources().getString(R.string.gps_needs_text), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            refreshAfterSettings = true;
+                            NavigationHelper.navigateToPermissonsSettings(getActivity());
+                        }
+                    });
                 }
             }
 

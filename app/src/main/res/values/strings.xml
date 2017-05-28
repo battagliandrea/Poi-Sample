@@ -2,6 +2,11 @@
 
     <!--MISCELLANEOUS-->
     <string name="app_name">POI</string>
+    <string name="ok">Ok</string>
+    <string name="settings">Impostazioni</string>
+    <string name="warning">Attenzione!</string>
+    <string name="retry">Riprova</string>
+
 
     <!--HOME VIEW-->
     <string name="title_list">Lista</string>
@@ -13,5 +18,14 @@
     <string name="details_business_hours_text">Orari di apertura</string>
     <string name="close">Chiuso</string>
     <string name="description">Descrizione</string>
+
+    <!--ERRORS-->
+    <string name="error_text">Si è verificato un errore!</string>
+
+    <!--GPS-->
+    <string name="gps_needs_text">Attiva i permessi di geolocalizzazione per visualizzare correttamente la mappa!</string>
+
+    <!--INTERNET CONNECTION-->
+    <string name="internet_error_text">Nessuna connessione internet!</string>
 
 </resources>

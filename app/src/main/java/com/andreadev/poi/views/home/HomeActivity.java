@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.andreadev.poi.R;
@@ -161,6 +163,18 @@ public class HomeActivity extends BaseActivity implements IHomeView {
         }catch (NullPointerException | ClassCastException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void connectionError() {
+        Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.internet_error_text), Snackbar.LENGTH_INDEFINITE)
+        .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(presenter!=null)
+                    presenter.getList();
+            }
+        }).show();
     }
 
     private void setupSearchView(Menu menu){
