@@ -49,7 +49,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
         setContentView(R.layout.activity_home);
         ButterKnife.inject(this);
 
-        this.setupToolbar(toolbar, false, getResources().getString(R.string.app_name));
+        this.setupToolbar(toolbar, false, getResources().getString(R.string.main_title));
 
 
         if(getResources().getBoolean(R.bool.isTablet)){

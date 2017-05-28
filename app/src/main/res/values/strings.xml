@@ -1,7 +1,8 @@
 <resources>
 
     <!--MISCELLANEOUS-->
-    <string name="app_name">POI</string>
+    <string name="app_name">Andrea Battaglia</string>
+    <string name="main_title">Point of interest</string>
     <string name="ok">Ok</string>
     <string name="settings">Impostazioni</string>
     <string name="warning">Attenzione!</string>
