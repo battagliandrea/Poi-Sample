@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,7 +30,13 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         } else {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
+    }
 
+    public void setupCollapsingToolbar(CollapsingToolbarLayout collapsingToolbarLayout, @Nullable String title) {
+        if (title != null) {
+            collapsingToolbarLayout.setTitle(title);
+            collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, (R.color.white)));
+        }
     }
 
     @Override

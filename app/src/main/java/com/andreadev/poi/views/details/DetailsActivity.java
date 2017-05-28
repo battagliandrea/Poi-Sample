@@ -1,6 +1,7 @@
 package com.andreadev.poi.views.details;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,14 +28,14 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
     Toolbar toolbar;
     @InjectView(R.id.details_image_view)
     ImageView imageView;
-    @InjectView(R.id.details_name_text_view)
-    TextView nameTextView;
     @InjectView(R.id.details_description_text_view)
     TextView descriptionTextView;
     @InjectView(R.id.details_address_text_view)
     TextView addressTextView;
     @InjectView(R.id.recyclerView)
     RecyclerView recyclerViewHorizontal;
+    @InjectView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbar;
 
     private DetailsPresenter presenter;
 
@@ -44,7 +45,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
         setContentView(R.layout.activity_details);
         ButterKnife.inject(this);
 
-        this.setupToolbar(toolbar, true, getIntent().getStringExtra(Constant.INTENT_EXTRE_POI_TITLE));
+        this.setupToolbar(toolbar, true, null);
+        this.setupCollapsingToolbar(collapsingToolbar, getIntent().getStringExtra(Constant.INTENT_EXTRE_POI_TITLE));
 
         presenter = new DetailsPresenter(this);
         presenter.getPoiDetails(getIntent().getStringExtra(Constant.INTENT_EXTRE_POI_ID));
@@ -70,7 +72,6 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
     @Override
     public void onSuccess(Poi value) {
         try {
-            nameTextView.setText(value.name);
             addressTextView.setText(value.address);
             descriptionTextView.setText(value.description);
 

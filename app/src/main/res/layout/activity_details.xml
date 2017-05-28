@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.andreadev.poi.views.details.DetailsActivity">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/collapsing_toolbar" />
     <include layout="@layout/content_details" />
 
 </android.support.design.widget.CoordinatorLayout>
