@@ -81,7 +81,7 @@ public class HomePresenter implements IHomePresenter, IHomeInteractor.OnGetPoiLi
                     @Override
                     public void onComplete() {
                         Log.d(TAG, "FILTER COMPLETE");
-                        view.filterListSuccess(filterList);
+                        view.getListSuccess(filterList);
                     }
                 });
     }

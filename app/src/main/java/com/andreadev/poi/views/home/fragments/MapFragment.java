@@ -58,6 +58,10 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
         ButterKnife.inject(this, view);
         mapview.onCreate(savedInstanceState);
 
+        if(getResources().getBoolean(R.bool.isTablet)){
+            requirePermission();
+        }
+
         return view;
     }
 
@@ -93,6 +97,8 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
     public void setData(List<Poi> data) {
         markersList = new ArrayList<>();
         markersList.addAll(data);
+
+        setMarkersList();
     }
 
     @Override
@@ -131,18 +137,27 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(45.07358, 7.6601), 12);//Turin lat/lng
         map.animateCamera(cameraUpdate);
 
-        if(markersList!=null){
+        setMarkersList();
+
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                if(!getResources().getBoolean(R.bool.isTablet)){
+                    NavigationHelper.navigateToDetails(getActivity(), mHashMap.get(marker), marker.getTitle());
+                }
+
+            }
+        });
+    }
+
+    private void setMarkersList(){
+        if(map!=null && markersList!=null){
+            map.clear();
+            mHashMap.clear();
             for (Poi p : markersList) {
                 Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(p.lat, p.lng)).title(p.name).snippet(p.address));
                 mHashMap.put(marker, p.id);
             }
         }
-
-        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                NavigationHelper.navigateToDetails(getActivity(), mHashMap.get(marker), marker.getTitle());
-            }
-        });
     }
 }

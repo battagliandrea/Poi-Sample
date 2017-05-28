@@ -12,5 +12,4 @@ import java.util.List;
 public interface IHomeView extends BaseView{
 
     void getListSuccess(List<Poi> data);
-    void filterListSuccess(List<Poi> data);
 }

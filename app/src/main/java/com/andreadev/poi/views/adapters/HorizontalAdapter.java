@@ -1,6 +1,5 @@
-package com.andreadev.poi.views.details.adapters;
+package com.andreadev.poi.views.adapters;
 
-import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

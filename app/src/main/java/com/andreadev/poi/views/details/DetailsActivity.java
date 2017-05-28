@@ -12,7 +12,7 @@ import com.andreadev.poi.R;
 import com.andreadev.poi.base.BaseActivity;
 import com.andreadev.poi.models.Poi;
 import com.andreadev.poi.utils.Constant;
-import com.andreadev.poi.views.details.adapters.HorizontalAdapter;
+import com.andreadev.poi.views.adapters.HorizontalAdapter;
 import com.andreadev.poi.views.details.core.DetailsPresenter;
 import com.andreadev.poi.views.details.core.IDetailsView;
 import com.bumptech.glide.Glide;

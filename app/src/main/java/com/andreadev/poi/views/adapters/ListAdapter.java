@@ -1,4 +1,4 @@
-package com.andreadev.poi.views.home.adapters;
+package com.andreadev.poi.views.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
