@@ -2,7 +2,9 @@ package com.andreadev.poi.views.home.fragments;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -123,7 +125,7 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
                 if (report.areAllPermissionsGranted()) {
                     mapview.getMapAsync(MapFragment.this);
                 } else {
-                    AlertDialogHelper.showPermissionRequestAlert(getActivity(), getResources().getString(R.string.warning), getResources().getString(R.string.gps_needs_text), new DialogInterface.OnClickListener() {
+                    AlertDialogHelper.showPermissionRequestAlert(getActivity(), getResources().getString(R.string.warning), getResources().getString(R.string.gps_permissions_needs_text), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             refreshAfterSettings = true;
@@ -152,6 +154,19 @@ public class MapFragment extends Fragment implements HomeFragmentCallback, OnMap
         map.animateCamera(cameraUpdate);
 
         setMarkersList();
+
+        map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                final LocationManager manager = (LocationManager) getActivity().getSystemService( Context.LOCATION_SERVICE );
+                if (manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) || manager.isProviderEnabled( LocationManager.NETWORK_PROVIDER )) {
+                    return false;
+                }else{
+                    AlertDialogHelper.showAlert(getActivity(), getResources().getString(R.string.warning), getResources().getString(R.string.gps_needs_text));
+                }
+                return false;
+            }
+        });
 
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override

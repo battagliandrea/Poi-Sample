@@ -24,7 +24,8 @@
     <string name="error_text">Si è verificato un errore!</string>
 
     <!--GPS-->
-    <string name="gps_needs_text">Attiva i permessi di geolocalizzazione per visualizzare correttamente la mappa!</string>
+    <string name="gps_permissions_needs_text">Attiva i permessi di geolocalizzazione per visualizzare correttamente la mappa!</string>
+    <string name="gps_needs_text">Attiva il servizio di geolocalizzazione per visualizzare la tua posizione sulla mappa!</string>
 
     <!--INTERNET CONNECTION-->
     <string name="internet_error_text">Nessuna connessione internet!</string>
