@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
 
-    public static final String BASE_URL = "http://synesthesia.it/sites/default/files/exercise/";
+    public static final String BASE_URL = "http://andreadev.com/exercise/";
 
     private static Retrofit retrofit = null;
 
